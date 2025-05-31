@@ -7,22 +7,22 @@ Welcome to **DSA-2026**, a curated collection of programming problems and Data S
 | Topic | Link |
 | ----- | ---- |
 | Problems on Arrays | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnArrays](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnArrays) |
-| Problems on Matrices | [LogicBuilding/tree/main/ProblemsOnMatrixs) |
-| Problems on Strings | [LogicBuilding/tree/main/ProblemsOnStrings) |
-| Problems on Patterns | [LogicBuilding/tree/main/ProblemsOnPatterns) |
-| Problems on Recursion | [KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnRecursions) |
-| Problems on Bits | [LogicBuilding/tree/main/ProblemsOnBits) |
+| Problems on Matrices | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnMatrixs](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnMatrixs) |
+| Problems on Strings | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnStrings](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnStrings) |
+| Problems on Patterns | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnPatterns](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnPatterns) |
+| Problems on Recursion | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnRecursions](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnRecursions) |
+| Problems on Bits | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnBits](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/ProblemsOnBits) |
 
 ### 🔹 Data Structures & Algorithms  
 | Topic | Link |
 | ----- | ---- |
-| Linked List | [tree/main/LinkedList) |
-| Stack | [Stack) |
-| Queue | [Queue) |
-| Tree | [
-| Searching Techniques | [LogicBuilding/tree/main/SearchingTechniques) |
-| Sorting Algorithms | [LogicBuilding/tree/main/SortingAlgorithms) |
-| Standard Template Library (STL) | [LogicBuilding/tree/main/STL) |
+| Linked List | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/LinkedList](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/LinkedList) |
+| Stack | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/Stack](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/Stack) |
+| Queue | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/Queue](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/Queue) |
+| Tree | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/Tree](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/Tree) |
+| Searching Techniques | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/SearchingTechniques](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/SearchingTechniques) |
+| Sorting Algorithms | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/SortingAlgorithms](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/SortingAlgorithms) |
+| Standard Template Library (STL) | [https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/STL](https://github.com/KunalNarkhedePatil/LogicBuilding/tree/main/STL) |
 
 ## 🎯 Project Overview  
 This repository is structured to help developers:
