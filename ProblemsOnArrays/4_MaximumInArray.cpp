@@ -65,6 +65,20 @@ class ArrayDemo : public Array
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
 
+    int FindMaximumInArray()
+    {
+        int iMax=Arr[0];
+
+        for(int i=0;i<iSize;i++)
+        {
+            if(Arr[i]>iMax)
+            {
+                iMax=Arr[i];
+            }
+        }
+
+        return iMax;
+    }
    
 };
 
@@ -81,5 +95,8 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    std::cout<<"Maximum Number is  :"<<obj.FindMaximumInArray()<<std::endl;
     return 0;
 }
+

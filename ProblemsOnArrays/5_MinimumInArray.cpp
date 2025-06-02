@@ -65,7 +65,19 @@ class ArrayDemo : public Array
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
 
-   
+    int findMinimumInArray()
+    {
+        int iMin=Arr[0];
+
+        for(int i=0;i<iSize;i++)
+        {
+            if(Arr[i]<iMin)
+            {
+                iMin=Arr[i];
+            }
+        }
+        return iMin;
+    }
 };
 
 int main()
@@ -81,5 +93,7 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    std::cout<<"Minimun in Array :"<<obj.findMinimumInArray()<<std::endl;
     return 0;
 }

@@ -65,7 +65,16 @@ class ArrayDemo : public Array
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
 
-   
+    int SumOfAllElements()
+    {
+        int iSum=0;
+
+        for(int i=0;i<iSize;i++)
+        {
+            iSum=iSum+Arr[i];
+        }
+        return iSum;
+    } 
 };
 
 int main()
@@ -81,5 +90,8 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    std::cout<<"Sum of Element in array is "<<obj.SumOfAllElements()<<std::endl;
+
     return 0;
 }
