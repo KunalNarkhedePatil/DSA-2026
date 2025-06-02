@@ -50,7 +50,7 @@ public:
         }
     }
 
-    int* getArr() const
+    int* getArr()
     {
         return Arr;
     }
@@ -70,66 +70,53 @@ class ArrayDemo : public Array
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
 
-    void InsertElementInArray(int iNo,int iPos)
+
+    void DeleteElementInArray(int iPos)
     {
         if(iPos<1 || iPos>iSize+1)
         {
-            std::cout<<"Invalid Index..."<<std::endl;
+            std::cout<<"Invalid Index...."<<std::endl;
             exit(-1);
         }
 
-        
-
-        int *newArr=new int[iSize+1];
-
-        for(int i=0;i<iPos-1;i++)
+        for(int i=iPos;i<iSize;i++)
         {
-            newArr[i]=Arr[i];
+            Arr[i]=Arr[i+1];
         }
 
-        newArr[iPos-1]=iNo;
-
-        for(int i=iPos;i<=iSize;i++)
-        {
-            newArr[i]=Arr[i];
-        }
-
-        delete[] Arr;
-        Arr=newArr;
-        iSize++;
+        Arr=(int *)realloc(Arr,sizeof(int)*iSize-1);
+        iSize--;
     }
 
+   
 };
 
 int main()
 {
-    int iSize=0;
-    int iNo=0;
-    int iPos=0;
+    int iSize;
     std::cout << "Enter size of array: ";
     std::cin >> iSize;
 
     ArrayDemo obj(iSize);
 
+    int *Arr=obj.getArr();
     std::cout << "Enter elements:\n";
     obj.Accept();
-    
-    int *Arr=obj.getArr();
+
     std::cout << "Array elements:\n";
     obj.Display(Arr);
 
-    std::cout<<"Enter the iNo want to insert :"<<std::endl;
-    std::cin>>iNo;
+    int iPos=0;
 
-    std::cout<<"Enter the position"<<std::endl;
+    std::cout<<"Enter the position want to delete element:"<<std::endl;
     std::cin>>iPos;
 
-    obj.InsertElementInArray(iNo,iPos);
+    obj.DeleteElementInArray(iPos);
 
+    std::cout<<"After Deleting Array is :"<<std::endl;
     Arr=obj.getArr();
-
-    std::cout<<"After Insert Array is :"<<std::endl;
-
     obj.Display(Arr);
+
+   
     return 0;
 }
