@@ -64,7 +64,7 @@ public:
 class ArrayDemo : public Array
 {
 public:
-    ArrayDemo(int iSize) : Array(iSize) {}
+    ArrayDemo(int iSize=5) : Array(iSize) {}
 
     bool checkArrayPalindromic()
     {
