@@ -1,5 +1,6 @@
+//9, 4, -2, -1, 5, 0, -5, -3, 2
 #include <iostream>
-#include <unordered_map>
+#include<vector>
 class Array
 {
 protected:
@@ -65,25 +66,45 @@ class ArrayDemo : public Array
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
 
-    int firstRepeated() 
+    void rearrange()
     {
-        std::unordered_map<int,int> freq;
-
+        std::vector<int> vecPos;
+        std::vector<int> vecNeg;
         for(int i=0;i<iSize;i++)
         {
-            freq[Arr[i]]++;
-        }
-
-        for(int i=0;i<iSize;i++)
-        {
-            if(freq[Arr[i]]>1)
+            if(Arr[i]>=0)
             {
-                return i+1;
+                vecPos.push_back(Arr[i]);
+               
+            }
+            else
+            {
+                vecNeg.push_back(Arr[i]);
             }
         }
 
-        return -1;
+        int i=0;
+        int j=0;
+        int k=0;
+
+        while(i<vecPos.size() && j<vecNeg.size())
+        {
+            Arr[k++]=vecPos[i++];
+            Arr[k++]=vecNeg[j++]; 
+        }
+
+        while(i<vecPos.size())
+        {
+            Arr[k++]=vecPos[i++];
+        }
+
+        while(j<vecNeg.size())
+        {
+            Arr[k++]=vecNeg[j++]; 
+        }
     }
+
+   
 };
 
 int main()
@@ -100,8 +121,11 @@ int main()
     std::cout << "Array elements:\n";
     obj.Display();
 
-    int iRet=obj.firstRepeated();
+    obj.rearrange();
 
-    std::cout<<"first repeating  element is :"<<iRet<<std::endl;
+    std::cout<<"After rearranginng Positive Negative Alternative:"<<std::endl;
+
+    obj.Display();
+
     return 0;
 }
