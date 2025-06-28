@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <unordered_map>
 class Array
 {
 protected:
@@ -64,6 +64,25 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
+
+    int findMajorityElement()
+    {
+        std::unordered_map<int,int> freq;
+
+        for(int i=0;i<iSize;i++)
+        {
+            freq[Arr[i]]++;
+        }
+
+        for(int i=0;i<iSize;i++)
+        {
+            if(freq[Arr[i]]>iSize/2)
+            {
+                return Arr[i];
+            }
+        }
+        return -1;
+    }
       
 };
 
@@ -80,5 +99,11 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int iRet=obj.findMajorityElement();
+
+
+    std::cout<<"Majority Element which is more than size of array by 2:"<<iRet<<std::endl;
+
     return 0;
 }
