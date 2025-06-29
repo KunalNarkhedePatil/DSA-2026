@@ -50,7 +50,7 @@ This repository contains a comprehensive list of beginner-to-intermediate level 
 
 **Kunal Narkhede**  
 💼 Passionate about DSA, Systems Programming, and Cybersecurity  
-🔗 [LinkedIn](https://www.linkedin.com/in/kunalnarkhedepatil)
+🔗 [LinkedIn](https://www.linkedin.com/in/kunal-narkhede-b812a9214/)
 
 ---
 
