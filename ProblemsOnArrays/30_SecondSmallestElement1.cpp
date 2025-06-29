@@ -1,13 +1,13 @@
 #include <iostream>
-#include <algorithm>
+#include<algorithm>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +15,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +25,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -65,38 +65,36 @@ class ArrayDemo : public Array
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
 
-    int FindLargest()
+    // 1 2 4 7 7 5
+    int findSmallest()
     {
-        int iMax=Arr[0];
+        int iMin=0;
+
         for(int i=0;i<iSize;i++)
         {
-            if(Arr[i]>iMax)
+            if(Arr[i]<iMin)
             {
-                iMax=Arr[i];
+                iMin=Arr[i];
             }
         }
-        return iMax;
+
+        return iMin;
     }
-
-    //1 2 3 4 5 5
-    int findSecondLargest()
+    int findSecondSmallest()
     {
-        int iMax=FindLargest();
-
+        
+        int iMin=findSmallest();
         std::sort(Arr,Arr+iSize);
 
-        std::cout<<"Max:"<<iMax<<std::endl;
-
-        for(int i=iSize-2;i>=0;i--)
+        for(int i=1;i<iSize;i++)
         {
-            if(iMax != Arr[i]) 
+            if(Arr[i]!=iMin)
             {
                 return Arr[i];
             }
         }
-        return -1;
+        return iMin;
     }
-      
 };
 
 int main()
@@ -113,8 +111,8 @@ int main()
     std::cout << "Array elements:\n";
     obj.Display();
 
-    int iRet=obj.findSecondLargest();
+    int iRet = obj.findSecondSmallest();
 
-    std::cout<<"Second largest element is :"<<iRet<<std::endl;
+    std::cout << "Second Minimum element is :" << iRet << std::endl;
     return 0;
 }

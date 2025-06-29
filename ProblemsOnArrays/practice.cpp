@@ -1,87 +1,109 @@
-#include<iostream>
-using namespace std;
+#include <iostream>
 
-//typedef Node* PNODE;
-class Node
+class Array
 {
-    //friend class SinglyLL;
-    public:
-    int data;
-    Node* next;
+protected:
+    int iSize;
+    int *Arr;
 
-    public:
+public:
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
-    Node(int val)
+    virtual ~Array()
     {
-        this->data=val;
-        this->next=NULL;
+        delete[] Arr;
+        Arr = nullptr;
+    }
+
+    Array(const Array &other)
+    {
+        this->iSize = other.iSize;
+        this->Arr = new int[iSize];
+        for (int i = 0; i < iSize; i++)
+        {
+            this->Arr[i] = other.Arr[i];
+        }
+    }
+
+    Array &operator=(const Array &other)
+    {
+        if (this == &other)
+            return *this;
+
+        delete[] this->Arr;
+        this->iSize = other.iSize;
+        this->Arr = new int[iSize];
+
+        for (int i = 0; i < iSize; i++)
+        {
+            this->Arr[i] = other.Arr[i];
+        }
+
+        return *this;
+    }
+
+    void Accept()
+    {
+        for (int i = 0; i < iSize; i++)
+        {
+            std::cin >> Arr[i];
+        }
+    }
+
+    void Display() const
+    {
+        for (int i = 0; i < iSize; i++)
+        {
+            std::cout << Arr[i] << " ";
+        }
+        std::cout << std::endl;
     }
 };
 
-class SinglyLL
+class ArrayDemo : public Array
 {
-    private:
-
-    Node* first;
-    int iSize;
 public:
-    SinglyLL()
-    {
-        cout<<"Inside SinglyLL::SinglyLL()"<<endl;
-        this->first=NULL;
-        this->iSize=0;
-    }
+    ArrayDemo(int iSize) : Array(iSize) {}
 
-    void insertAsSorted(int iVal)
+    // 1 2 4 7 7 5
+    int findSecondLargest()
     {
-        cout<<"Inside insertAsSorted:"<<endl;
-        Node* newn=new Node(iVal);
+        int Largest=Arr[0];
+        int SecondLargest=-1;
 
-        if(first==NULL || first->data>=iVal)
+        for(int i=0;i<iSize;i++)
         {
-            std::cout<<"Inside first"<<std::endl;
-            newn->next=first;
-            first=newn;
-        }
-        else
-        {
-            std::cout<<"Inside second"<<std::endl;
-            Node* temp=first;
-            while(temp->next!=NULL && temp->next->data<=iVal)
+            if(Arr[i]>Largest)
             {
-                temp=temp->next;
+                SecondLargest=Largest;
+                Largest=Arr[i];
             }
-
-            newn->next=temp->next;
-            temp->next=newn;
+            else if(Arr[i]<Largest && Arr[i]>SecondLargest)
+            {
+                SecondLargest=Arr[i];
+            }
         }
-        iSize++;
-    }
-    void Display()
-    {
-        std::cout<<"Inside Display():"<<std::endl;
-        Node* temp=first;
 
-        while(temp!=NULL)
-        {
-            std::cout<<temp->data<<" ";
-            temp=temp->next;
-        }
-        std::cout<<std::endl;
+        return SecondLargest;
     }
 };
 
 int main()
 {
-    std::cout<<"Inside Main...."<<std::endl;
-    SinglyLL sobj;
+    int iSize;
+    std::cout << "Enter size of array: ";
+    std::cin >> iSize;
 
-    sobj.insertAsSorted(10);
-    sobj.insertAsSorted(5);
-    sobj.insertAsSorted(15);
-    sobj.insertAsSorted(30);
-    sobj.insertAsSorted(20);
+    ArrayDemo obj(iSize);
 
-    sobj.Display();
+    std::cout << "Enter elements:\n";
+    obj.Accept();
+
+    std::cout << "Array elements:\n";
+    obj.Display();
+
+    int iRet = obj.findSecondLargest();
+
+    std::cout << "Second largest element is :" << iRet << std::endl;
     return 0;
 }
