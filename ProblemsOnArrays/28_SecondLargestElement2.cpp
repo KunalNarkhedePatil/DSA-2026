@@ -92,6 +92,7 @@ public:
                 return Arr[i];
             }
         }
+        return -1;
     }
       
 };
