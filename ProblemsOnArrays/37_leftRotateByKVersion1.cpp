@@ -88,6 +88,7 @@ public:
         int j = 0;
         for (int i = iSize - K; i < iSize; i++)
         {
+            //Arr[i]=temp[i-(iSize-K)]
             Arr[i] = temp[j];
             j++;
         }
