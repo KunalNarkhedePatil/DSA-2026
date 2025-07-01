@@ -1,6 +1,6 @@
 # 🚀 ProblemsOnArrays
 
-This repository contains a comprehensive list of beginner-to-intermediate level array problems implemented in C++.
+This repository contains a comprehensive list of beginner-to-intermediate level array problems implemented in C++. Each problem is solved with clear logic, proper structure, and clean coding practices. Ideal for DSA practice and technical interview preparation.
 
 ---
 
@@ -43,10 +43,15 @@ This repository contains a comprehensive list of beginner-to-intermediate level 
 | 33.  | Check If Array is Sorted          | [View Code](https://github.com/KunalNarkhedePatil/DSA-2026/blob/main/ProblemsOnArrays/33_checkArraySorted.cpp) |
 | 34.  | Remove Duplicates (Sorted v1)     | [View Code](https://github.com/KunalNarkhedePatil/DSA-2026/blob/main/ProblemsOnArrays/34_removeDuplicateFromSortedArray1.cpp) |
 | 35.  | Remove Duplicates (Two Pointer)   | [View Code](https://github.com/KunalNarkhedePatil/DSA-2026/blob/main/ProblemsOnArrays/35_removeDuplicateFromSortedArrayUsingTwoPointer.cpp) |
+| 36.  | Left Rotate By One                | [View Code](https://github.com/KunalNarkhedePatil/DSA-2026/blob/main/ProblemsOnArrays/36_LeftRotateByOne.cpp) |
+| 37.  | Left Rotate By K (Version 1)      | [View Code](https://github.com/KunalNarkhedePatil/DSA-2026/blob/main/ProblemsOnArrays/37_leftRotateByKVersion1.cpp) |
+| 38.  | Left Rotate By K (Version 2)      | [View Code](https://github.com/KunalNarkhedePatil/DSA-2026/blob/main/ProblemsOnArrays/38_leftRotateByKVersion2.cpp) |
+| 39.  | Move Zeros To End (Version 1)     | [View Code](https://github.com/KunalNarkhedePatil/DSA-2026/blob/main/ProblemsOnArrays/39_MoveZerosToEndVersion1.cpp) |
+| 40.  | Move Zeros To End (Version 2)     | [View Code](https://github.com/KunalNarkhedePatil/DSA-2026/blob/main/ProblemsOnArrays/40_MoveZerosToEndVersion2.cpp) |
 
 ---
 
-## 🧠 Author
+## 👨‍💻 Author
 
 **Kunal Narkhede**  
 💼 Passionate about DSA, Systems Programming, and Cybersecurity  
@@ -56,11 +61,11 @@ This repository contains a comprehensive list of beginner-to-intermediate level 
 
 ## ⭐️ Support
 
-If you found this helpful:
+If you found this repository helpful:
 
-- 🌟 Star the repo  
-- 🖊 Contribute improvements  
-- 📬 Share with your peers preparing for coding interviews!
+- 🌟 Star this repository  
+- 🖊 Contribute improvements (PRs welcome!)  
+- 📬 Share it with peers preparing for coding interviews
 
 ---
 
