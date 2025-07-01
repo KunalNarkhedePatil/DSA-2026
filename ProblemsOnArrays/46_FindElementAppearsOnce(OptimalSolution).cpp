@@ -64,16 +64,20 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-
+    // Using XOR
+    //  1 1 2 3 3 4 4
+    // XOR (1^1)^(2)^(3^3)^(4^4);
+    // 0^2^0^0
+    // 0^2
     int findElementAppearsOnce()
     {
-       int XOR=0;
+        int XOR = 0;
 
-       for(int i=0;i<iSize;i++)
-       {
-           XOR=XOR^Arr[i];
-       }
-       return XOR;
+        for (int i = 0; i < iSize; i++)
+        {
+            XOR = XOR ^ Arr[i];
+        }
+        return XOR;
     }
 };
 
