@@ -1,5 +1,5 @@
 #include <iostream>
-#include <algorithm>
+#include <unordered_map>
 class Array
 {
 protected:
@@ -65,25 +65,23 @@ class ArrayDemo : public Array
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
 
-    int findMaxConsecutiveOnes()
+    int findElementAppearsOnce()
     {
-        int iCnt=0;
-        int Maxi=0;
+        std::unordered_map<int,int> freq;
+        
+        for(int i=0;i<iSize;i++)
+        {
+            freq[Arr[i]]++;
+        }
 
         for(int i=0;i<iSize;i++)
         {
-            if(Arr[i]==1)
+            if(freq[Arr[i]]==1)
             {
-                iCnt++;
-                Maxi=std::max(Maxi,iCnt);
-            }
-            else
-            {
-                iCnt=0;
+                return Arr[i];
             }
         }
-
-        return Maxi;
+        return -1;
     }
 };
 
@@ -101,8 +99,8 @@ int main()
     std::cout << "Array elements:\n";
     obj.Display();
 
-    int iRet = obj.findMaxConsecutiveOnes();
+    int iRet = obj.findElementAppearsOnce();
 
-    std::cout << "Maximum Consecutive Of Ones are:" << iRet << std::endl;
+    std::cout << "Number Which is occurs only once:" << iRet << std::endl;
     return 0;
 }

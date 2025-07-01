@@ -65,25 +65,27 @@ class ArrayDemo : public Array
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
 
-    int findMaxConsecutiveOnes()
+    int findElementAppearsOnce()
     {
-        int iCnt=0;
-        int Maxi=0;
-
-        for(int i=0;i<iSize;i++)
+        for (int i = 0; i < iSize; i++)
         {
-            if(Arr[i]==1)
+            int iCnt = 0;
+
+            for (int j = 0; j < iSize; j++)
             {
-                iCnt++;
-                Maxi=std::max(Maxi,iCnt);
+                if (Arr[i] == Arr[j])
+                {
+                    iCnt++;
+                }
             }
-            else
+
+            if (iCnt == 1)
             {
-                iCnt=0;
+                return Arr[i]; 
             }
         }
 
-        return Maxi;
+        return -1; 
     }
 };
 
@@ -101,8 +103,8 @@ int main()
     std::cout << "Array elements:\n";
     obj.Display();
 
-    int iRet = obj.findMaxConsecutiveOnes();
+    int iRet = obj.findElementAppearsOnce();
 
-    std::cout << "Maximum Consecutive Of Ones are:" << iRet << std::endl;
+    std::cout << "Number Which is occurs only once:" << iRet << std::endl;
     return 0;
 }
