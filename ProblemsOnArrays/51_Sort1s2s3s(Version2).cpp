@@ -1,7 +1,7 @@
-// With Positive Integer
 
 #include <iostream>
 #include <algorithm>
+#include <vector>
 class Array
 {
 protected:
@@ -66,31 +66,47 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-    /// 1 2 3 1 1 1 1 3 3  K=6
-    int longestSubArraySumWithK(int K)
+
+    void sortArray()
     {
-        int iRight = 0;
-        int iLeft = 0;
-        int iMaxLen = 0;
-        int iSum = Arr[0];
-        while (iRight < iSize)
+        int iCntZero = 0;
+        int iCntOne = 0;
+        int iCntTwo = 0;
+
+        for (int i = 0; i < iSize; i++)
         {
-            while (iLeft <= iRight && iSum > K)
+            if (Arr[i] == 0)
             {
-                iSum = iSum - Arr[iLeft];
-                iLeft++;
+                iCntZero++;
             }
-            if (iSum == K)
+            else if (Arr[i] == 1)
             {
-                iMaxLen = std::max(iMaxLen, iRight - iLeft + 1);
+                iCntOne++;
             }
-            iRight++;
-            if (iRight < iSize)
+            else
             {
-                iSum = iSum + Arr[iRight];
+                iCntTwo++;
             }
         }
-        return iMaxLen;
+
+        for (int i = 0; i < iSize; i++)
+        {
+            if (iCntZero != 0)
+            {
+                Arr[i] = 0;
+                iCntZero--;
+            }
+            else if (iCntOne != 0)
+            {
+                Arr[i] = 1;
+                iCntOne--;
+            }
+            else
+            {
+                Arr[i] = 2;
+                iCntTwo--;
+            }
+        }
     }
 };
 
@@ -108,8 +124,10 @@ int main()
     std::cout << "Array elements:\n";
     obj.Display();
 
-    int iRet = obj.longestSubArraySumWithK(6);
+    obj.sortArray();
 
-    std::cout << "Longest SubArray Sum With K is:" << iRet << std::endl;
+    std::cout << "After Sorting array is:" << std::endl;
+
+    obj.Display();
     return 0;
 }

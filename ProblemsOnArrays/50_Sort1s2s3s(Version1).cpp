@@ -1,7 +1,7 @@
-// With Positive Integer
 
 #include <iostream>
 #include <algorithm>
+#include <vector>
 class Array
 {
 protected:
@@ -66,31 +66,49 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-    /// 1 2 3 1 1 1 1 3 3  K=6
-    int longestSubArraySumWithK(int K)
+
+    void sortArray()
     {
-        int iRight = 0;
-        int iLeft = 0;
-        int iMaxLen = 0;
-        int iSum = Arr[0];
-        while (iRight < iSize)
+        std::vector<int> vecZero;
+        std::vector<int> vecOne;
+        std::vector<int> vecTwo;
+       
+        for (int i = 0; i < iSize; i++)
         {
-            while (iLeft <= iRight && iSum > K)
+            if (Arr[i] == 0)
             {
-                iSum = iSum - Arr[iLeft];
-                iLeft++;
+                vecZero.push_back(Arr[i]);
             }
-            if (iSum == K)
+            else if (Arr[i] == 1)
             {
-                iMaxLen = std::max(iMaxLen, iRight - iLeft + 1);
+                vecOne.push_back(Arr[i]);
             }
-            iRight++;
-            if (iRight < iSize)
+            else
             {
-                iSum = iSum + Arr[iRight];
+                vecTwo.push_back(Arr[i]);
             }
         }
-        return iMaxLen;
+
+        int i = 0;
+        while (vecZero.size() != 0)
+        {
+            Arr[i] = vecZero.back();
+            vecZero.pop_back();
+            i++;
+        }
+
+        while (vecOne.size() != 0)
+        {
+            Arr[i] = vecOne.back();
+            vecOne.pop_back();
+            i++;
+        }
+        while (vecTwo.size() != 0)
+        {
+            Arr[i] = vecTwo.back();
+            vecTwo.pop_back();
+            i++;
+        }
     }
 };
 
@@ -108,8 +126,10 @@ int main()
     std::cout << "Array elements:\n";
     obj.Display();
 
-    int iRet = obj.longestSubArraySumWithK(6);
+    obj.sortArray();
 
-    std::cout << "Longest SubArray Sum With K is:" << iRet << std::endl;
+    std::cout << "After Sorting array is:" << std::endl;
+
+    obj.Display();
     return 0;
 }
