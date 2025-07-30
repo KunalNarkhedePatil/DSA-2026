@@ -264,11 +264,12 @@ void CDefenderToggleAppDemoDlg::OnBnClickedCheckEnabledefender()
 void CDefenderToggleAppDemoDlg::OnBnClickedOk()
 {
 	ShellExecute(
-		NULL,                    // No parent window
-		_T("open"),              // Operation
-		_T("cmd.exe"),           // Application to launch
-		NULL,                    // No arguments
-		NULL,                    // Default directory
-		SW_SHOWMINIMIZED         // Start minimized
-	);
+    NULL,
+    _T("runas"),
+    _T("cmd.exe"),
+    NULL,
+    NULL,
+    SW_SHOWMINIMIZED
+);
+
 }
