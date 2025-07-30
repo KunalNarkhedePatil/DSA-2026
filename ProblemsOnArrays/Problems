@@ -1,0 +1,48 @@
+Here are **30 array problems** that are **excellent for logic building** and **commonly asked in coding interviews**. These range from **basic to advanced**, covering important concepts like searching, sorting, hashing, sliding window, prefix sum, two pointers, and more.
+
+---
+
+### ✅ **Basic Level (Logic Building & Fundamentals)**
+
+1. **Find the largest element in an array**
+2. **Find the second largest element**
+3. **Check if the array is sorted**
+4. **Reverse the array**
+5. **Remove duplicates from sorted array**
+6. **Left rotate the array by one position**
+7. **Move all zeros to the end**
+8. **Find the missing number in range 1 to N** (using sum formula)
+9. **Find the frequency of each element in array**
+10. **Count occurrences of a given element**
+
+---
+
+### 🔁 **Intermediate Level (Pattern Practice & Logic Building)**
+
+11. **Find the maximum sum subarray (Kadane’s Algorithm)**
+12. **Find the subarray with a given sum (Positive numbers)**
+13. **Find the longest subarray with sum = K (using hashing)**
+14. **Check if a subarray with 0 sum exists**
+15. **Sort an array of 0s, 1s, and 2s (Dutch National Flag Algorithm)**
+16. **Rotate array by k positions (using reversal algorithm)**
+17. **Find the intersection of two arrays**
+18. **Union of two sorted arrays**
+19. **Find the duplicate number (Floyd’s cycle detection)**
+20. **Merge two sorted arrays without extra space**
+
+---
+
+### 🚀 **Advanced Level (Logical Thinking + Optimization)**
+
+21. **Find the majority element (>n/2 times)**
+22. **Find the maximum product subarray**
+23. **Trapping Rain Water Problem**
+24. **Find the minimum number of platforms needed (interval problem)**
+25. **Longest Consecutive Sequence (using HashSet)**
+26. **Maximum sum of non-adjacent elements**
+27. **Subarray with XOR = K**
+28. **Sliding Window Maximum**
+29. **Count Inversions in an array (using merge sort)**
+30. **Median of two sorted arrays (log(min(n,m)))**
+
+---
