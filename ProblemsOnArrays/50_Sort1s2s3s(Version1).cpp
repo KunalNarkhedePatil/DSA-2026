@@ -1,13 +1,15 @@
-#include <iostream>
 
+#include <iostream>
+#include <algorithm>
+#include <vector>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +17,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +27,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +66,50 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    void sortArray()
+    {
+        std::vector<int> vecZero;
+        std::vector<int> vecOne;
+        std::vector<int> vecTwo;
+       
+        for (int i = 0; i < iSize; i++)
+        {
+            if (Arr[i] == 0)
+            {
+                vecZero.push_back(Arr[i]);
+            }
+            else if (Arr[i] == 1)
+            {
+                vecOne.push_back(Arr[i]);
+            }
+            else
+            {
+                vecTwo.push_back(Arr[i]);
+            }
+        }
+
+        int i = 0;
+        while (vecZero.size() != 0)
+        {
+            Arr[i] = vecZero.back();
+            vecZero.pop_back();
+            i++;
+        }
+
+        while (vecOne.size() != 0)
+        {
+            Arr[i] = vecOne.back();
+            vecOne.pop_back();
+            i++;
+        }
+        while (vecTwo.size() != 0)
+        {
+            Arr[i] = vecTwo.back();
+            vecTwo.pop_back();
+            i++;
+        }
+    }
 };
 
 int main()
@@ -79,6 +124,12 @@ int main()
     obj.Accept();
 
     std::cout << "Array elements:\n";
+    obj.Display();
+
+    obj.sortArray();
+
+    std::cout << "After Sorting array is:" << std::endl;
+
     obj.Display();
     return 0;
 }

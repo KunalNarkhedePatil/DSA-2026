@@ -1,13 +1,14 @@
 #include <iostream>
-
+#include<algorithm>
+#include<climits>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +16,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +26,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +65,47 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    // 1 2 4 7 7 5
+    int findSmallest()
+    {
+        int iMin=INT_MAX;
+
+        for(int i=0;i<iSize;i++)
+        {
+            if(Arr[i]<iMin)
+            {
+                iMin=Arr[i];
+            }
+        }
+
+        return iMin;
+    }
+    int findSecondSmallest()
+    {
+        
+        int iMin=findSmallest();
+
+        std::cout<<"Min:"<<iMin<<std::endl;
+
+        int iSecondMin=INT_MAX;
+
+        for(int i=0;i<iSize;i++)
+        {
+            if(Arr[i] < iSecondMin && Arr[i] > iMin)
+            {
+                iSecondMin=Arr[i];
+            }
+        }
+       if(iSecondMin==INT_MAX)
+       {
+          return -1;
+       }
+       else
+       {
+          return iSecondMin;
+       }
+    }
 };
 
 int main()
@@ -80,5 +121,9 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int iRet = obj.findSecondSmallest();
+
+    std::cout << "Second Minimum element is :" << iRet << std::endl;
     return 0;
 }

@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <unordered_map>
 class Array
 {
 protected:
@@ -7,7 +7,7 @@ protected:
     int* Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -64,7 +64,26 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    int firstRepeated() 
+    {
+        std::unordered_map<int,int> freq;
+
+        for(int i=0;i<iSize;i++)
+        {
+            freq[Arr[i]]++;
+        }
+
+        for(int i=0;i<iSize;i++)
+        {
+            if(freq[Arr[i]]>1)
+            {
+                return i+1;
+            }
+        }
+
+        return -1;
+    }
 };
 
 int main()
@@ -80,5 +99,9 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int iRet=obj.firstRepeated();
+
+    std::cout<<"first repeating  element is :"<<iRet<<std::endl;
     return 0;
 }

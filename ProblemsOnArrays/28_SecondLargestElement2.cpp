@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <algorithm>
 class Array
 {
 protected:
@@ -64,6 +64,38 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
+
+    int FindLargest()
+    {
+        int iMax=Arr[0];
+        for(int i=0;i<iSize;i++)
+        {
+            if(Arr[i]>iMax)
+            {
+                iMax=Arr[i];
+            }
+        }
+        return iMax;
+    }
+
+    //1 2 3 4 5 5
+    int findSecondLargest()
+    {
+        int iMax=FindLargest();
+
+        std::sort(Arr,Arr+iSize);
+
+        std::cout<<"Max:"<<iMax<<std::endl;
+
+        for(int i=iSize-2;i>=0;i--)
+        {
+            if(iMax != Arr[i]) 
+            {
+                return Arr[i];
+            }
+        }
+        return -1;
+    }
       
 };
 
@@ -80,5 +112,9 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int iRet=obj.findSecondLargest();
+
+    std::cout<<"Second largest element is :"<<iRet<<std::endl;
     return 0;
 }

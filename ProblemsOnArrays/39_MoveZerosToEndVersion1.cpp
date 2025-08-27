@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include<vector>
 class Array
 {
 protected:
@@ -7,7 +7,7 @@ protected:
     int* Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -64,7 +64,28 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    void moveZeroAtEnd()
+    {
+        std::vector<int> temp;
+
+        for(int i=0;i<iSize;i++)
+        {
+            if(Arr[i]!=0)
+            {
+                temp.push_back(Arr[i]);
+            }
+        }
+
+        for(int i=0;i<temp.size();i++)
+        {
+            Arr[i]=temp[i];
+        }
+        for(int i=temp.size();i<iSize;i++)
+        {
+            Arr[i]=0;
+        }
+    }
 };
 
 int main()
@@ -80,5 +101,13 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    obj.moveZeroAtEnd();
+
+    std::cout<<"After Moving Zero At the End Array is :"<<std::endl;
+
+    obj.Display();
+
+    
     return 0;
 }

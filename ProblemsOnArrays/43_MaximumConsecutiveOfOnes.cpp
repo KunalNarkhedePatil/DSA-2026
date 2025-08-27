@@ -1,13 +1,13 @@
 #include <iostream>
-
+#include <algorithm>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +15,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +25,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +64,27 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    int findMaxConsecutiveOnes()
+    {
+        int iCnt=0;
+        int Maxi=0;
+
+        for(int i=0;i<iSize;i++)
+        {
+            if(Arr[i]==1)
+            {
+                iCnt++;
+                Maxi=std::max(Maxi,iCnt);
+            }
+            else
+            {
+                iCnt=0;
+            }
+        }
+
+        return Maxi;
+    }
 };
 
 int main()
@@ -80,5 +100,9 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int iRet = obj.findMaxConsecutiveOnes();
+
+    std::cout << "Maximum Consecutive Of Ones are:" << iRet << std::endl;
     return 0;
 }

@@ -1,13 +1,14 @@
 #include <iostream>
+#include <vector>
 
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +16,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +26,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,12 +65,39 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    void leftRotateByK(int K)
+    {
+
+        K = K % iSize;
+
+        std::vector<int> temp;
+
+        for (int i = 0; i < K; i++)
+        {
+            temp.push_back(Arr[i]);
+        }
+
+        // Shifting
+
+        for (int i = K; i < iSize; i++)
+        {
+            Arr[i - K] = Arr[i];
+        }
+
+        int j = 0;
+        for (int i = iSize - K; i < iSize; i++)
+        {
+            //Arr[i]=temp[i-(iSize-K)]
+            Arr[i] = temp[j];
+            j++;
+        }
+    }
 };
 
 int main()
 {
-    int iSize;
+    int iSize = 0, K = 0;
     std::cout << "Enter size of array: ";
     std::cin >> iSize;
 
@@ -80,5 +108,15 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    std::cout << "Enter the K:" << std::endl;
+    std::cin >> K;
+
+    obj.leftRotateByK(K);
+
+    std::cout << "After Rotating Left By K" << std::endl;
+
+    obj.Display();
+
     return 0;
 }

@@ -7,7 +7,7 @@ protected:
     int* Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -64,7 +64,48 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    bool checkNumberPalindrome(int iNo)
+    {
+        //First Find Reverse Number
+
+        int Temp=iNo;
+        int iRev=0;
+        while(iNo!=0)
+        {
+            iRev=(iRev*10)+iNo%10;
+            iNo=iNo/10;
+        }
+        if(iRev==Temp)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+   
+    void FindAllPalindromeElements()
+    {
+        bool bFlag=false;
+        for(int i=0;i<iSize;i++)
+        {
+            if(checkNumberPalindrome(Arr[i]))
+            {
+                bFlag=true;
+                std::cout<<Arr[i]<<" ";
+            }
+        }
+        if(bFlag==false)
+        {
+            std::cout << "There is no Palindrome number element in array.";
+        }
+    }
+
+   
 };
 
 int main()
@@ -80,5 +121,7 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    obj.FindAllPalindromeElements();
     return 0;
 }

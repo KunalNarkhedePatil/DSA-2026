@@ -1,13 +1,14 @@
 #include <iostream>
-
+#include<algorithm>
+#include<climits>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +16,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +26,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +65,25 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+   
+   bool checkArraySorted()
+   {
+    
+       for(int i=1;i<iSize;i++)
+       {
+          if(Arr[i]>=Arr[i-1])
+          {
+              continue;
+          }
+          else 
+          {
+              return false;
+          }
+       }
+
+      return true;
+   }
 };
 
 int main()
@@ -80,5 +99,16 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    bool bRet = obj.checkArraySorted();
+
+    if(bRet==true)
+    {
+        std::cout<<"Given an array is sorted"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"Given an array is not sorted"<<std::endl;
+    }
     return 0;
 }

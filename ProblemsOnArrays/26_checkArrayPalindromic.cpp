@@ -1,13 +1,14 @@
 #include <iostream>
+#include <vector>
 
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +16,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +26,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -63,8 +64,25 @@ public:
 class ArrayDemo : public Array
 {
 public:
-    ArrayDemo(int iSize) : Array(iSize) {}
-      
+    ArrayDemo(int iSize=5) : Array(iSize) {}
+
+    bool checkArrayPalindromic()
+    {
+        int iStart = 0;
+        int iEnd = iSize - 1;
+
+        while (iStart <= iEnd)
+        {
+            if (Arr[iStart] != Arr[iEnd])
+            {
+                return false;
+            }
+            iStart++;
+            iEnd--;
+        }
+
+        return true;
+    }
 };
 
 int main()
@@ -80,5 +98,17 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    bool bRet=obj.checkArrayPalindromic();
+
+    if(bRet==true)
+    {
+        std::cout<<"Given Array is Palindromic"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"Given Array is not Palindromic"<<std::endl;
+    }
+
     return 0;
 }

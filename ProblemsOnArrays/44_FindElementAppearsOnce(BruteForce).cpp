@@ -1,13 +1,13 @@
 #include <iostream>
-
+#include <algorithm>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +15,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +25,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +64,29 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    int findElementAppearsOnce()
+    {
+        for (int i = 0; i < iSize; i++)
+        {
+            int iCnt = 0;
+
+            for (int j = 0; j < iSize; j++)
+            {
+                if (Arr[i] == Arr[j])
+                {
+                    iCnt++;
+                }
+            }
+
+            if (iCnt == 1)
+            {
+                return Arr[i]; 
+            }
+        }
+
+        return -1; 
+    }
 };
 
 int main()
@@ -80,5 +102,9 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int iRet = obj.findElementAppearsOnce();
+
+    std::cout << "Number Which is occurs only once:" << iRet << std::endl;
     return 0;
 }

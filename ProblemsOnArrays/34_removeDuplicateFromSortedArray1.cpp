@@ -1,13 +1,14 @@
+//https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/1680658450/
 #include <iostream>
-
+#include<set>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +16,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +26,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +65,40 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+   
+   int removeDuplicateFromSortedArray()
+   {
+       std::set<int> s;
+
+       for(int i=0;i<iSize;i++)
+       {
+           s.insert(Arr[i]);
+       }
+
+       int index=0;
+
+       std::cout<<"Size of Set:"<<s.size()<<std::endl;
+
+       for(auto it:s)
+       {
+           Arr[index]=it;
+           index++;
+       }
+
+       return s.size();
+   }
+
+   void Display(int size)
+   {
+      for(int i=0;i<size;i++)
+      {
+          std::cout<<Arr[i]<<" ";
+      }
+      std::cout<<std::endl;
+   }
+
+
 };
 
 int main()
@@ -73,12 +107,20 @@ int main()
     std::cout << "Enter size of array: ";
     std::cin >> iSize;
 
-    ArrayDemo obj(iSize);
+    Array *pObj=new ArrayDemo(iSize);
 
     std::cout << "Enter elements:\n";
-    obj.Accept();
+    pObj->Accept();
 
     std::cout << "Array elements:\n";
-    obj.Display();
+    pObj->Display();
+
+    int iRet = reinterpret_cast<ArrayDemo*>(pObj)->removeDuplicateFromSortedArray();
+
+    std::cout<<"iRet:"<<iRet<<std::endl;
+
+    std::cout<<"Check After remove duplicate unique element:"<<std::endl;
+
+    reinterpret_cast<ArrayDemo*>(pObj)->Display(iRet);
     return 0;
 }

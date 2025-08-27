@@ -4,10 +4,10 @@ class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +15,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +25,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -50,7 +50,12 @@ public:
         }
     }
 
-    void Display() const
+    int *getArr() const
+    {
+        return Arr;
+    }
+
+    void Display(int Arr[]) const
     {
         for (int i = 0; i < iSize; i++)
         {
@@ -64,12 +69,40 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    void InsertElementInArray(int iNo, int iPos)
+    {
+        if (iPos < 1 || iPos > iSize + 1)
+        {
+            std::cout << "Invalid Index..." << std::endl;
+            exit(-1);
+        }
+
+        int *newArr = new int[iSize + 1];
+
+        for (int i = 0; i < iPos - 1; i++)
+        {
+            newArr[i] = Arr[i];
+        }
+
+        newArr[iPos - 1] = iNo;
+
+        for (int i = iPos; i <= iSize; i++)
+        {
+            newArr[i] = Arr[i];
+        }
+
+        delete[] Arr;
+        Arr = newArr;
+        iSize++;
+    }
 };
 
 int main()
 {
-    int iSize;
+    int iSize = 0;
+    int iNo = 0;
+    int iPos = 0;
     std::cout << "Enter size of array: ";
     std::cin >> iSize;
 
@@ -78,7 +111,22 @@ int main()
     std::cout << "Enter elements:\n";
     obj.Accept();
 
+    int *Arr = obj.getArr();
     std::cout << "Array elements:\n";
-    obj.Display();
+    obj.Display(Arr);
+
+    std::cout << "Enter the iNo want to insert :" << std::endl;
+    std::cin >> iNo;
+
+    std::cout << "Enter the position" << std::endl;
+    std::cin >> iPos;
+
+    obj.InsertElementInArray(iNo, iPos);
+
+    Arr = obj.getArr();
+
+    std::cout << "After Insert Array is :" << std::endl;
+
+    obj.Display(Arr);
     return 0;
 }

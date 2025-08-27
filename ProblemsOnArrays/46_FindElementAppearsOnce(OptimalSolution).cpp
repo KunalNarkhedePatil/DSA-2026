@@ -1,13 +1,13 @@
 #include <iostream>
-
+#include <unordered_map>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +15,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +25,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +64,21 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+    // Using XOR
+    //  1 1 2 3 3 4 4
+    // XOR (1^1)^(2)^(3^3)^(4^4);
+    // 0^2^0^0
+    // 0^2
+    int findElementAppearsOnce()
+    {
+        int XOR = 0;
+
+        for (int i = 0; i < iSize; i++)
+        {
+            XOR = XOR ^ Arr[i];
+        }
+        return XOR;
+    }
 };
 
 int main()
@@ -80,5 +94,9 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int iRet = obj.findElementAppearsOnce();
+
+    std::cout << "Number Which is occurs only once:" << iRet << std::endl;
     return 0;
 }

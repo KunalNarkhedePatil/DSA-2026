@@ -7,7 +7,7 @@ protected:
     int* Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -64,7 +64,27 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    int reverseNumber(int iNo)
+    {
+        int iRev=0;
+
+        while(iNo!=0)
+        {
+            iRev=iRev*10+iNo%10;
+            iNo=iNo/10;
+        }
+        return iRev;
+    }
+    void ReverseAllElementsInArray()
+    {
+        for(int i=0;i<iSize;i++)
+        {
+            Arr[i]=reverseNumber(Arr[i]);
+        }
+    }
+
+   
 };
 
 int main()
@@ -79,6 +99,12 @@ int main()
     obj.Accept();
 
     std::cout << "Array elements:\n";
+    obj.Display();
+
+    obj.ReverseAllElementsInArray();
+
+    std::cout<<"After ReverseAll Elemenets in Arary :"<<std::endl;
+
     obj.Display();
     return 0;
 }

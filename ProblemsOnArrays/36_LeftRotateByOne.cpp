@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <unordered_map>
 class Array
 {
 protected:
@@ -7,7 +7,7 @@ protected:
     int* Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -64,7 +64,17 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    void leftRotateByOne()
+    {
+        int Temp=Arr[0];
+
+        for(int i=1;i<iSize;i++)
+        {
+             Arr[i-1]=Arr[i];
+        }
+        Arr[iSize-1]=Temp;
+    }
 };
 
 int main()
@@ -80,5 +90,13 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    obj.leftRotateByOne();
+
+    std::cout<<"After Rotating Left By One"<<std::endl;
+
+    obj.Display();
+
+    
     return 0;
 }

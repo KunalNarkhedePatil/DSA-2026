@@ -1,13 +1,15 @@
-#include <iostream>
 
+#include <iostream>
+#include <algorithm>
+#include <vector>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +17,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +27,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +66,48 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    void sortArray()
+    {
+        int iCntZero = 0;
+        int iCntOne = 0;
+        int iCntTwo = 0;
+
+        for (int i = 0; i < iSize; i++)
+        {
+            if (Arr[i] == 0)
+            {
+                iCntZero++;
+            }
+            else if (Arr[i] == 1)
+            {
+                iCntOne++;
+            }
+            else
+            {
+                iCntTwo++;
+            }
+        }
+
+        for (int i = 0; i < iSize; i++)
+        {
+            if (iCntZero != 0)
+            {
+                Arr[i] = 0;
+                iCntZero--;
+            }
+            else if (iCntOne != 0)
+            {
+                Arr[i] = 1;
+                iCntOne--;
+            }
+            else
+            {
+                Arr[i] = 2;
+                iCntTwo--;
+            }
+        }
+    }
 };
 
 int main()
@@ -79,6 +122,12 @@ int main()
     obj.Accept();
 
     std::cout << "Array elements:\n";
+    obj.Display();
+
+    obj.sortArray();
+
+    std::cout << "After Sorting array is:" << std::endl;
+
     obj.Display();
     return 0;
 }

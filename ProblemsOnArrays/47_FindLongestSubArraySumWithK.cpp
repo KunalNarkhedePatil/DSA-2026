@@ -1,13 +1,15 @@
-#include <iostream>
+// With Positive Integer
 
+#include <iostream>
+#include <algorithm>
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize = 5) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +17,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +27,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +66,32 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+    /// 1 2 3 1 1 1 1 3 3  K=6
+    int longestSubArraySumWithK(int K)
+    {
+        int iRight = 0;
+        int iLeft = 0;
+        int iMaxLen = 0;
+        int iSum = Arr[0];
+        while (iRight < iSize)
+        {
+            while (iLeft <= iRight && iSum > K)
+            {
+                iSum = iSum - Arr[iLeft];
+                iLeft++;
+            }
+            if (iSum == K)
+            {
+                iMaxLen = std::max(iMaxLen, iRight - iLeft + 1);
+            }
+            iRight++;
+            if (iRight < iSize)
+            {
+                iSum = iSum + Arr[iRight];
+            }
+        }
+        return iMaxLen;
+    }
 };
 
 int main()
@@ -80,5 +107,9 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int iRet = obj.longestSubArraySumWithK(6);
+
+    std::cout << "Longest SubArray Sum With K is:" << iRet << std::endl;
     return 0;
 }

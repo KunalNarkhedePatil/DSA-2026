@@ -1,13 +1,14 @@
 #include <iostream>
+#include <vector>
 
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +16,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +26,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +65,32 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    int longestSubarrayWithSum(int K)
+    {
+        int maxLen = 0;
+        for (int i = 0; i < iSize; i++)
+        {
+            int currSum = 0;
+
+            for (int j = i; j < iSize; j++)
+            {
+                currSum = currSum + Arr[j];
+
+                if (currSum == K)
+                {
+                    int len = j - i + 1;
+
+                    if (len > maxLen)
+                    {
+                        maxLen = len;
+                    }
+                }
+            }
+        }
+
+        return maxLen;
+    }
 };
 
 int main()
@@ -80,5 +106,15 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int K = 0;
+
+    std::cout << "Enter the target element" << std::endl;
+
+    std::cin >> K;
+
+    int res = obj.longestSubarrayWithSum(K);
+
+    std::cout << "Output:" << res << std::endl;
     return 0;
 }

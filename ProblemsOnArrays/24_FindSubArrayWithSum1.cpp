@@ -1,13 +1,14 @@
 #include <iostream>
+#include <vector>
 
 class Array
 {
 protected:
     int iSize;
-    int* Arr;
+    int *Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -15,7 +16,7 @@ public:
         Arr = nullptr;
     }
 
-    Array(const Array& other)
+    Array(const Array &other)
     {
         this->iSize = other.iSize;
         this->Arr = new int[iSize];
@@ -25,7 +26,7 @@ public:
         }
     }
 
-    Array& operator=(const Array& other)
+    Array &operator=(const Array &other)
     {
         if (this == &other)
             return *this;
@@ -64,7 +65,30 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    std::vector<int> subarraySum(int target)
+    {
+        for (int i = 0; i < iSize; i++)
+        {
+            int currSum = Arr[i];
+
+            if (currSum == target)
+            {
+                return {i + 1, i + 1};
+            }
+
+            for (int j = i + 1; j < iSize; j++)
+            {
+                currSum = currSum+Arr[j];
+
+                if (currSum == target)
+                {
+                    return {i + 1, j + 1};
+                }
+            }
+        }
+        return {-1};
+    }
 };
 
 int main()
@@ -80,5 +104,15 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    int target=0;
+
+    std::cout<<"Enter the target element"<<std::endl;
+
+    std::cin>>target;
+
+    std::vector<int> res=obj.subarraySum(target);
+
+    std::cout<<"Output:"<<res[0]<<" "<<res[1]<<std::endl;
     return 0;
 }

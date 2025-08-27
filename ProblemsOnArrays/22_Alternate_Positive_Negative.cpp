@@ -1,5 +1,6 @@
+//9, 4, -2, -1, 5, 0, -5, -3, 2
 #include <iostream>
-
+#include<vector>
 class Array
 {
 protected:
@@ -7,7 +8,7 @@ protected:
     int* Arr;
 
 public:
-    Array(int iSize=5) : iSize(iSize), Arr(new int[iSize]) {}
+    Array(int iSize) : iSize(iSize), Arr(new int[iSize]) {}
 
     virtual ~Array()
     {
@@ -64,7 +65,46 @@ class ArrayDemo : public Array
 {
 public:
     ArrayDemo(int iSize) : Array(iSize) {}
-      
+
+    void rearrange()
+    {
+        std::vector<int> vecPos;
+        std::vector<int> vecNeg;
+        for(int i=0;i<iSize;i++)
+        {
+            if(Arr[i]>=0)
+            {
+                vecPos.push_back(Arr[i]);
+               
+            }
+            else
+            {
+                vecNeg.push_back(Arr[i]);
+            }
+        }
+
+        int i=0;
+        int j=0;
+        int k=0;
+
+        while(i<vecPos.size() && j<vecNeg.size())
+        {
+            Arr[k++]=vecPos[i++];
+            Arr[k++]=vecNeg[j++]; 
+        }
+
+        while(i<vecPos.size())
+        {
+            Arr[k++]=vecPos[i++];
+        }
+
+        while(j<vecNeg.size())
+        {
+            Arr[k++]=vecNeg[j++]; 
+        }
+    }
+
+   
 };
 
 int main()
@@ -80,5 +120,12 @@ int main()
 
     std::cout << "Array elements:\n";
     obj.Display();
+
+    obj.rearrange();
+
+    std::cout<<"After rearranginng Positive Negative Alternative:"<<std::endl;
+
+    obj.Display();
+
     return 0;
 }
