@@ -1,5 +1,6 @@
 #include "Helper.h"
 
+
 Node1::Node1(int data)
 {
 	this->data = data;
